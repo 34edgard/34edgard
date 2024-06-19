@@ -1,12 +1,7 @@
-- 👋 Hi, I’m @34edgard
-- 👀 I’m interested in ...
-- 🌱 I’m currently learning ...
-- 💞️ I’m looking to collaborate on ...
-- 📫 How to reach me ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
-
-<!---
-34edgard/34edgard is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+## desarrollo de un sistema informático para la gestión de los datos y inscripción de los niños y niñas del jardín de infancia República del Uruguay 
+- integrantes 
+- Edgard Patete 
+- Diego Dias
+- Ashley Rivaz
+- Luis Castelar
+- Luisana Rodríguez 
