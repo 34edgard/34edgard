@@ -1,0 +1,14 @@
+hola soy Edgard Patete y esta es la versión 2.8 del proyecto y si te preguntas donde estan la version 2.2 , 2.3, 2.4 , 2.5, 2.6  y 2.7 la verdad es que eran una mierda asi que la mande a la verga no es que se me alla olvidado hacer las compias de esas versiones ni nada por el estilo -_- bueno eso es pasado asi que mejor nos enfocamos en el futuro que es la version que a mi pareser es mejor que esa mierda del pasado y si te das cuenta estoy escribiendo en la misma linia que cada ves es mas y mas larga  solo por que me gusta joder que mas hahaha -_-
+
+
+bueno al fin consegui que al ver la interfaz no me diera un sida visual y tiene una apariencia mas profecional -_-
+
+
+una regla muy importante es que en cada modulo no puede aver mas de 5 funciones y/o clases y que todas las funciones o clases que se encuentren  en un modulo deben de tener relacion entre si a y para aclarar un modulo es un archivo "." algo en nuestro caso seria un archivo.php y bueno si no lo entendiste mejor ve considerando la prostitucion como carrera a futuro nojodaaaaa!!!
+
+
+
+bueno en este programa tenemos de primero al index.php que no es mas que una portada indicando de que ba el proyecto los integrantes del mismo y posiblemente otra cosas mas que pensare mas adelante después estan otras carpetas una con el código php que contendra las funciones y clases del programa, luego esta la de estilos que contiene el Bootstrap y los estilos creados por el grupo, luego esta la carpeta del html esta contiene todo lo de html como formularios, tablas , etc... recientemente e incorporado la carpeta img la cual contiene obiamente las imagenes ni modo que a madre del presidente de la republica bolivariana de cuba  '-' ???  ademas una carpeta con codigo js esta contendra obiamente todo el  codigo python y c++ que mas -_- ,  y   para terminar tenemos carpeta de las páginas esta contiene todas las páginas del programa que incluirán los elementos en la carpeta de html mediante includes.
+
+la forma en que se planea escribir el código  ya sea variable o funciones , clases , los nombres de los archivos sera completamente en español y se evitara el uso de caracteres especiales exepto el guión bajo "_" y el punto "." 
+bergas estoy realmente ladillado 
