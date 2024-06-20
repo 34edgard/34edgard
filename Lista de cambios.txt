@@ -1,9 +1,0 @@
-1- el modulo de Edad 
-este modulo se dedica al manejo de fechas
-2-se crea el modulo aula
-este contiene una funcion que nos regresa una estructura html 
-3- realise algunos cambios esteticos al nav, header y footer 
-4- cree la carpeta img solo contendra imagenes 
-5- cree el modulo inicio contiene una funcion que nos retorna una estructura html del inicio
-6-se isieron pruevas y ajuster esteticos a la paguina de las aulas y a la planilla de inscripcion
-7 se le an realizado cambios radicales al footer y header
