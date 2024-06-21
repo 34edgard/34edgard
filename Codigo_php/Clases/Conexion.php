@@ -34,7 +34,7 @@ if(!$this->enlace = mysqli_connect($this->puerto, $this->usuario,$this->contrase
  
 class consultas extends conexiones{
   
-  public function insertar_reguistro($sql){
+  public static function insertar_registro($sql){
     $enlace = $this->conectarse();
     $consulta = mysqli_query($enlace,$sql);
 
@@ -50,7 +50,7 @@ mysqli_close($enlace);
     
   }
  
-  public function consultar_reguistro($clave,$logitud){
+  public static function consultar_registro($clave,$logitud=1){
     $enlace = $this->conectarse();
     $consulta = mysqli_query($enlace,$clave);
     

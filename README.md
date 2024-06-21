@@ -1,7 +1,10 @@
-## desarrollo de un sistema informático para la gestión de los datos y inscripción de los niños y niñas del jardín de infancia República del Uruguay 
-- integrantes 
-- Edgard Patete 
+# desarrollo de un sistema informático para la gestión escolar para el jardín de infancia República del Uruguay maturin estado monagas
+## integrantes     
+- Edgard Patete   
 - Diego Dias
 - Ashley Rivaz
 - Luis Castelar
 - Luisana Rodríguez 
+### profesora de proyecto 
+
+- Alvis Zacarías 
