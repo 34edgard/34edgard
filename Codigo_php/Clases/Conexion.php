@@ -34,7 +34,7 @@ if(!$this->enlace = mysqli_connect($this->puerto, $this->usuario,$this->contrase
  
 class consultas extends conexiones{
   
-  public static function insertar_registro($sql){
+  public static function ejecutar_consulta($sql){
     $enlace = $this->conectarse();
     $consulta = mysqli_query($enlace,$sql);
 

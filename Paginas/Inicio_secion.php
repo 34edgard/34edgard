@@ -4,6 +4,7 @@ session_start();
 include('../Codigo_php/Clases/Conexion.php');
 $op =7;
 include('../Codigo_php/Funciones/Enunciados.php');
+include('../Codigo_php/Clases/Persona.php');
 include('../Partes_html/Head.php');
 ?>
 
@@ -12,13 +13,11 @@ extract($_POST);
 if(isset($n)){
 
   
-  $conn = new consultas;
- $sql = "SELECT * FROM `personal_administrativo` RIGHT JOIN `roles` ON `personal_administrativo`.`id_rol` = `roles`.`id_rol` WHERE  `personal_administrativo`.`ci` = $usu";
- $alarma = false;
+  
+$arreglo = personal_administrativo->consultar_datos($usu,4);
+
  
-$arreglo = $conn->consultar_reguistro($sql,$logitud = 6);
- 
-// print_r($arreglo
+
  if( $contraseña == $arreglo[0][3]){
   ?>
   
@@ -30,12 +29,7 @@ $arreglo = $conn->consultar_reguistro($sql,$logitud = 6);
 
   $_SESSION['ci'] = $arreglo[0][0];
  
- $fh = date('Y-m-d');
- $hi =date('h:i');
-$sql = "INSERT INTO `seciones`(`ci`, `fecha`,`hora_inicio`,`hora_cierre`) VALUES ($usu,'$fh','$hi','$hi')";
-
-$conn->insertar_reguistro($sql) ;
-
+ sesion->registrar_sesion($usu);
   
         ?>
 

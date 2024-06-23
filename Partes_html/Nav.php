@@ -40,6 +40,8 @@
     <?php }else{ if($op <> 1) { ?>
      <a class="navbar-brand text-white" href= "./Paginas/Pag_1.php"
     >inicio de sesión</a>
+         <a class="navbar-brand text-white" href= "./Pag_0.php"
+    >carga de datos </a>
 <?php } ?>
      
     <?php } } ?>

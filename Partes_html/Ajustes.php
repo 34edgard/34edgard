@@ -13,9 +13,13 @@
 switch($_POST['formulario']){
   case 'crear':
     
-$sql = "
-INSERT INTO `personal_administrativo`(`ci`, `nombre`, `apellido`, `contrasena`,`id_rol`) VALUES ($CI,'$usu','$ape','$pass',$rol)";
+
+
+personal_administrativo->registrar_datos($CI,$usu,$ape,$pass,$rol);
   break;
+  
+  
+  
   case 'cambiar':
     
 $sql = "UPDATE `personal_administrativo` SET `nombre`='$usu2',
@@ -24,10 +28,12 @@ $sql = "UPDATE `personal_administrativo` SET `nombre`='$usu2',
 `id_rol` =$id_rol
 
 WHERE `ci` = $CI2";
+
+personal_administrativo->editar_datos($CI2,$usu2,$ape2,$pass2,$id);
   break;
 }
 
-$conn->insertar_reguistro($sql);
+
 
 
 
@@ -52,7 +58,14 @@ $conn->insertar_reguistro($sql);
 
       <div class="tab-content" role="tablist">
         <div class="tab-pane active" id="general" role="tabpanel">
-<form action="Pag_9.php" method="post">
+<form action="Pag_<?php 
+if($op > 0){
+echo "9";
+}else{
+  echo "0";
+}
+
+?>.php" method="post">
   <fieldset class="thumbnail container mt-5">
     <label class="form-label"> 
     cedula
@@ -85,13 +98,13 @@ $conn->insertar_reguistro($sql);
        
 
  <?php
-$conn = new consultas;
+
  
  
 
-$clave = "SELECT * FROM `personal_administrativo` RIGHT JOIN `roles` ON `personal_administrativo`.`id_rol` = `roles`.`id_rol`";
+
  
-$arreglo = $conn->consultar_reguistro($clave,$logitud =6);
+$arreglo = personal_administrativo->consultar_datos();
  
  ?>
    <table class="table table-bordered"> 
@@ -119,7 +132,7 @@ while($arreglo[$a][0])
 <td>'. $arreglo[$a][0] .'</td>
 <td>'. $arreglo[$a][1] .'</td>
 <td>'. $arreglo[$a][2] .'</td>
-<td>'. $arreglo[$a][5] .'</td>
+<td>'.  rol->consultar_rol($arreglo[4]).'</td>
 <td>'. $arreglo[$a][3] .'</td>
 
 <td>
@@ -153,7 +166,7 @@ while($arreglo[$a][0])
     </label>
     <label class="form-label"> 
     rol
-      <input type="text" name="rol2" class="form-control w-75" value='.$arreglo[$a][5] .'>
+      <input type="text" name="rol2" class="form-control w-75" value='.rol->consultar_rol($arreglo[4]) .'>
     </label>
     <label class="form-label"> 
     contraseña
@@ -191,9 +204,8 @@ while($arreglo[$a][0])
                     
 <ul>';
 $id = $arreglo[$a][0] ;
-$clave = "SELECT * FROM `seciones` WHERE `ci` = $id";
- 
-$lista_secciones = $conn->consultar_reguistro($clave,$logitud =2);
+
+$lista_secciones = sesion->consultar_sesion($id);
  $c =0;
  echo "<table class='table table-bordered'>";
  if(!$lista_secciones){
@@ -201,7 +213,12 @@ $lista_secciones = $conn->consultar_reguistro($clave,$logitud =2);
  }
  
  while($lista_secciones[$c][0]){
-   echo "<tr><td>".$lista_secciones[$c][1]."</td><td>".$lista_secciones[$c][2]."</td></tr>" ;
+   echo "<tr><td>".$lista_secciones[$c][1]."</td>
+<td>".$lista_secciones[$c][2]."</td>
+<td>".$lista_secciones[$c][3]."</td> 
+<td>".$lista_secciones[$c][4]."</td> 
+
+</tr>" ;
    
    $c++;
  }
