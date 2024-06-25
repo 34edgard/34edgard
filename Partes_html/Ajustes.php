@@ -1,44 +1,25 @@
 <?php
- extract($_POST);
-   
- 
- 
-  if(isset($_POST['formulario'])){
-    
+extract($_POST);
 
+  $PA = new personal_administrativo;
+  $ROL = new rol;
+  $SESION = new sesion;
+  $consulta = new consultas;
 
-
-  $conn = new consultas;
-
-switch($_POST['formulario']){
-  case 'crear':
-    
-
-
-personal_administrativo->registrar_datos($CI,$usu,$ape,$pass,$rol);
-  break;
+if (isset($_POST["formulario"])) {
   
-  
-  
-  case 'cambiar':
-    
-$sql = "UPDATE `personal_administrativo` SET `nombre`='$usu2',
-`apellido` = '$ape2', 
-`contrasena` ='$pass2',
-`id_rol` =$id_rol
+  switch ($_POST["formulario"]) {
+    case "crear":
+  $consulta->ejecutar_consulta($PA->registrar_datos($CI, $usu, $ape, $pass, $rol));
+      break;
 
-WHERE `ci` = $CI2";
+    case "cambiar":
+      
 
-personal_administrativo->editar_datos($CI2,$usu2,$ape2,$pass2,$id);
-  break;
-}
-
-
-
-
-
+   $consulta->ejecutar_consulta( $PA->editar_datos($CI2, $usu2, $ape2, $pass2, $id_rol));
+      break;
   }
-
+}
 ?>
 <div class="container mt-5">
       <h1><small>ajustes</small></h1>
@@ -57,15 +38,12 @@ personal_administrativo->editar_datos($CI2,$usu2,$ape2,$pass2,$id);
       </ul>
 
       <div class="tab-content" role="tablist">
-        <div class="tab-pane active" id="general" role="tabpanel">
-<form action="Pag_<?php 
-if($op > 0){
-echo "9";
-}else{
+        <div class="tab-pane " id="general" role="tabpanel">
+<form action="Pag_<?php if ($op > 0) {
+  echo "9";
+} else {
   echo "0";
-}
-
-?>.php" method="post">
+} ?>.php" method="post">
   <fieldset class="thumbnail container mt-5">
     <label class="form-label"> 
     cedula
@@ -81,7 +59,7 @@ echo "9";
     </label>
     <label class="form-label"> 
     rol
-      <input type="text" name="rol" class="form-control w-75">
+      <input type="number" name="rol" class="form-control w-75">
     </label>
     <label class="form-label"> 
     contraseña
@@ -94,19 +72,12 @@ echo "9";
 
         </div>
       
-        <div class="tab-pane" id="usuarios" role="tabpanel">
+        <div class="tab-pane active" id="usuarios" role="tabpanel">
        
 
  <?php
-
- 
- 
-
-
- 
-$arreglo = personal_administrativo->consultar_datos();
- 
- ?>
+ $arreglo = $consulta->consultar_registro($PA->consultar_datos(),4);
+   ?>
    <table class="table table-bordered"> 
  <tr>
 
@@ -123,24 +94,38 @@ $arreglo = personal_administrativo->consultar_datos();
  </tr> 
  
  <?php
-$a =0;
-$i =0;
-while($arreglo[$a][0])
- { 
-   
- echo '<tr>
-<td>'. $arreglo[$a][0] .'</td>
-<td>'. $arreglo[$a][1] .'</td>
-<td>'. $arreglo[$a][2] .'</td>
-<td>'.  rol->consultar_rol($arreglo[4]).'</td>
-<td>'. $arreglo[$a][3] .'</td>
+ $a = 0;
+ $i = 0;
+$nombres = $consulta->consultar_registro($ROL->consultar_rol(),2);
+
+ while ($arreglo[$a][0]) {
+
+   echo '<tr>
+<td>' .
+     $arreglo[$a][0] .
+     '</td>
+<td>' .
+     $arreglo[$a][1] .
+     '</td>
+<td>' .
+     $arreglo[$a][2] .
+     '</td>
+<td>' .
+$nombres[ $arreglo[$a][4] -1][0]
+ .
+     '</td>
+<td>' .
+     $arreglo[$a][3] .
+     '</td>
 
 <td>
 
  
  
   
-  <div class="modal fade" id="firefoxModal'.$i.'" tabindex="-1" aria-labelledby="firefoxModalLabel" aria-hidden="true">
+  <div class="modal fade" id="firefoxModal' .
+     $i .
+     '" tabindex="-1" aria-labelledby="firefoxModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -154,25 +139,37 @@ while($arreglo[$a][0])
   <fieldset class="thumbnail container mt-5">
   <label class="form-label"> 
     cedula
-      <input type="number" name="CI2" class="form-control w-75" value='.$arreglo[$a][0] .'>
+      <input type="number" name="CI2" class="form-control w-75" value=' .
+     $arreglo[$a][0] .
+     '>
     </label>
     <label class="form-label"> 
     nombre 
-      <input type="text" name="usu2" class= form-control w-75" value='.$arreglo[$a][1] .'>
+      <input type="text" name="usu2" class= form-control w-75" value=' .
+     $arreglo[$a][1] .
+     '>
     </label>
     <label class="form-label"> 
     apellido
-      <input type="text" name="ape2" class= form-control w-75" value='.$arreglo[$a][2] .'>
+      <input type="text" name="ape2" class= form-control w-75" value=' .
+     $arreglo[$a][2] .
+     '>
     </label>
     <label class="form-label"> 
     rol
-      <input type="text" name="rol2" class="form-control w-75" value='.rol->consultar_rol($arreglo[4]) .'>
+      <input type="text" name="rol2" class="form-control w-75" value=' .
+     $consulta->consultar_registro($ROL->consultar_rol($arreglo[$a][4])) .
+     '>
     </label>
     <label class="form-label"> 
     contraseña
-      <input type="password" name="pass2" class="form-control w-75 "  value='.$arreglo[$a][3] .'>
+      <input type="password" name="pass2" class="form-control w-75 "  value=' .
+     $arreglo[$a][3] .
+     '>
       </label><label>id_rol
-      <input type="number" name="id_rol" class="form-control w-75 "  value='.$arreglo[$a][4] .'>
+      <input type="number" name="id_rol" class="form-control w-75 "  value=' .
+     $arreglo[$a][4] .
+     '>
     </label>
     <button type="submit" class="btn btn-primary" name="formulario" value="cambiar">cambiar</button>
     <button type="reset" class="btn btn-danger">borrar</button>
@@ -188,12 +185,16 @@ while($arreglo[$a][0])
           </div>
         </div>
       </div>
-  <button type="button" class="btn btn-secondary " data-bs-toggle="modal" data-bs-target="#firefoxModal'.$i.'">
+  <button type="button" class="btn btn-secondary " data-bs-toggle="modal" data-bs-target="#firefoxModal' .
+     $i .
+     '">
         editar
       </button>
 
 </td><td>
-  <div class="modal fade" id="firefoxModa'.$i.'" tabindex="-1" aria-labelledby="firefoxModalLabel" aria-hidden="true">
+  <div class="modal fade" id="firefoxModa' .
+     $i .
+     '" tabindex="-1" aria-labelledby="firefoxModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -203,26 +204,37 @@ while($arreglo[$a][0])
             <div class="modal-body ">
                     
 <ul>';
-$id = $arreglo[$a][0] ;
+   $id = $arreglo[$a][0];
 
-$lista_secciones = sesion->consultar_sesion($id);
- $c =0;
- echo "<table class='table table-bordered'>";
- if(!$lista_secciones){
-   echo "<h3> lo siento este usuario no tiene historial</h3>";
- }
- 
- while($lista_secciones[$c][0]){
-   echo "<tr><td>".$lista_secciones[$c][1]."</td>
-<td>".$lista_secciones[$c][2]."</td>
-<td>".$lista_secciones[$c][3]."</td> 
-<td>".$lista_secciones[$c][4]."</td> 
+   $lista_secciones =
+   $consulta->consultar_registro(
+   $SESION->consultar_sesion($id)
+  ,4 );
+   $c = 0;
+   echo "<table class='table table-bordered'>";
+   if (!$lista_secciones) {
+     echo "<h3> lo siento este usuario no tiene historial</h3>";
+   }
 
-</tr>" ;
-   
-   $c++;
- }
-echo '</table>
+   while ($lista_secciones[$c][0]) {
+     echo "<tr><td>" .
+       $lista_secciones[$c][1] .
+       "</td>
+<td>" .
+       $lista_secciones[$c][2] .
+       "</td>
+<td>" .
+       $lista_secciones[$c][3] .
+       "</td> 
+<td>" .
+       $lista_secciones[$c][4] .
+       "</td> 
+
+</tr>";
+
+     $c++;
+   }
+   echo '</table>
 
 
             </div>
@@ -233,14 +245,16 @@ echo '</table>
           </div>
         </div>
       </div>
-  <button type="button" class="btn btn-secondary " data-bs-toggle="modal" data-bs-target="#firefoxModa'.$i.'">
+  <button type="button" class="btn btn-secondary " data-bs-toggle="modal" data-bs-target="#firefoxModa' .
+     $i .
+     '">
         historial
       </button>
 </td>
  </tr>';
-$a = $a +1;
-$i = $i +1;
- } 
+   $a = $a + 1;
+   $i = $i + 1;
+ }
  ?>
 </table>
             </div>

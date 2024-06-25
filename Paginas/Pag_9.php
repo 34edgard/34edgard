@@ -22,6 +22,7 @@ exit;
 
 $op = 9;
 include('../Codigo_php/Clases/Conexion.php');
+include ("../Codigo_php/Clases/Persona.php");
 include('../Codigo_php/Funciones/Enunciados.php');
 include('../Partes_html/Head.php');
 include('../Partes_html/Header.php');
